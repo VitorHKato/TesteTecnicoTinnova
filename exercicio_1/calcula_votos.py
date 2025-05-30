@@ -7,6 +7,12 @@ class CalculaVotos:
 
     def __init__(self, total_eleitores: int = 0, votos_validos: int = 0, votos_brancos: int = 0,
                  votos_nulos: int = 0) -> None:
+        """
+        :param total_eleitores: número total de eleitores.
+        :param votos_validos: número de votos válidos.
+        :param votos_brancos: número de votos em branco.
+        :param votos_nulos: número de votos nulos.
+        """
         self.total_eleitores = total_eleitores
         self.votos_validos = votos_validos
         self.votos_brancos = votos_brancos

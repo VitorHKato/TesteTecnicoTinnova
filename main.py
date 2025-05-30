@@ -4,7 +4,7 @@
     Descrição: Arquivo main com chamadas para classes que devolvam as respostas dos exercícios.
 """
 from exercicio_1.calcula_votos import CalculaVotos
-
+from exercicio_2 import bubble_sort
 
 def exercicio_1() -> None:
     """
@@ -24,7 +24,14 @@ def exercicio_1() -> None:
 
 
 def exercicio_2() -> None:
-    pass
+    """
+    Executa o exercício 2, ordenando uma lista de inteiros usando o algoritmo Bubble Sort.
+    """
+    lista = [5, 3, 2, 4, 7, 1, 0, 6]
+    print("Lista original:", lista)
+
+    lista_ordenada = bubble_sort.bubble_sort(lista)
+    print("Lista ordenada:", lista_ordenada)
 
 
 if __name__ == "__main__":
