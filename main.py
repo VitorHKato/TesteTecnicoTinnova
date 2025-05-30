@@ -5,6 +5,7 @@
 """
 from exercicio_1.calcula_votos import CalculaVotos
 from exercicio_2 import bubble_sort
+from exercicio_3 import fatorial
 
 def exercicio_1() -> None:
     """
@@ -34,9 +35,25 @@ def exercicio_2() -> None:
     print("Lista ordenada:", lista_ordenada)
 
 
+def exercicio_3() -> None:
+    """
+    Executa o exercício 3, calculando o fatorial de um número natural maior ou igual a dois.
+    :raises ValueError: Se n for menor que 2.
+    """
+    try:
+        for i in range(2, 7):
+            resultado = fatorial.fatorial(i)
+            print(f"O fatorial de {i} é: {resultado}")
+    except ValueError as e:
+        print(e)
+
+
 if __name__ == "__main__":
     # Chamada para o exercício 1
     exercicio_1()
 
     # Chamada para o exercício 2
     exercicio_2()
+
+    # Chamada para o exercício 3
+    exercicio_3()
