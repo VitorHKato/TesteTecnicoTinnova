@@ -1,9 +1,22 @@
+"""
+        Desenvolvedor: Vitor Henrique Kato
+        Data: 30/05/2025
+        Classe com informações sobre o veículo.
+"""
+from django.core.exceptions import ValidationError
 from django.db import models
+
+
+MARCAS_VALIDAS = ['Volkswagen', 'Ford', 'Honda', 'Chevrolet', 'Toyota',
+                 'Nissan', 'Fiat', 'Hyundai', 'Kia', 'Peugeot',
+                 'Citroën', 'Renault', 'Mitsubishi', 'Subaru',
+                 'Mazda', 'Suzuki', 'Dodge', 'Chrysler',
+                 'Jeep', 'Land Rover', 'Volvo', 'Audi',
+                 'BMW', 'Mercedes-Benz', 'Porsche']
+
 
 class Veiculo(models.Model):
     """
-        Desenvolvedor: Vitor Henrique Kato
-        Data: 30/05/2025
         Classe com informações sobre o veículo.
         :param
             nome: Nome do veículo.
@@ -22,5 +35,18 @@ class Veiculo(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name="Data de Criação")
     updated = models.DateTimeField(auto_now=True, verbose_name="Data de Atualização")
 
+
     def __str__(self):
         return self.nome
+
+
+    @staticmethod
+    def valida_marcas(value):
+        """
+            Valida nome de marcas de veículos.
+            :param value:
+            :raises: ValidationError se a marca não for válida.
+        """
+        if value not in MARCAS_VALIDAS:
+            raise ValidationError(
+                f"Marca '{value}' não é válida. Marcas válidas: {', '.join(MARCAS_VALIDAS)}")
