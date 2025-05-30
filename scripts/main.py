@@ -3,9 +3,11 @@
     Data: 29/05/2025
     Descrição: Arquivo main com chamadas para classes que devolvam as respostas dos exercícios.
 """
-from exercicio_1.calcula_votos import CalculaVotos
-from exercicio_2 import bubble_sort
-from exercicio_3 import fatorial
+from scripts.exercicio_1.calcula_votos import CalculaVotos
+from scripts.exercicio_2 import bubble_sort
+from scripts.exercicio_3 import fatorial
+from scripts.exercicio_4 import soma_multiplos
+
 
 def exercicio_1() -> None:
     """
@@ -48,6 +50,19 @@ def exercicio_3() -> None:
         print(e)
 
 
+def exercicio_4() -> None:
+    """
+    Executa o exercício 4, calculando a soma dos múltiplos de 3 e 5 até um número x.
+    :raises ValueError: Se x for menor que 0.
+    """
+    try:
+        x = 9
+        resultado = soma_multiplos.soma_multiplos(x)
+        print(f"A soma dos múltiplos de 3 e 5 até {x} é: {resultado}")
+    except ValueError as e:
+        print(e)
+
+
 if __name__ == "__main__":
     # Chamada para o exercício 1
     exercicio_1()
@@ -57,3 +72,6 @@ if __name__ == "__main__":
 
     # Chamada para o exercício 3
     exercicio_3()
+
+    # Chamada para o exercício 4
+    exercicio_4()
