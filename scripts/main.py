@@ -3,10 +3,10 @@
     Data: 29/05/2025
     Descrição: Arquivo main com chamadas para classes que devolvam as respostas dos exercícios.
 """
-from scripts.exercicio_1.calcula_votos import CalculaVotos
-from scripts.exercicio_2 import bubble_sort
-from scripts.exercicio_3 import fatorial
-from scripts.exercicio_4 import soma_multiplos
+from exercicio_1.calcula_votos import CalculaVotos
+from exercicio_2 import bubble_sort
+from exercicio_3 import fatorial
+from exercicio_4 import soma_multiplos
 
 
 def exercicio_1() -> None:
