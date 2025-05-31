@@ -1,0 +1,102 @@
+<div class="vehicles-container">
+  <!-- Header Section -->
+  <header class="page-header">
+    <h1 class="page-title">
+      <i class="icon car-icon"></i>
+      Frota de Veículos
+    </h1>
+    <button routerLink="/veiculos/novo" class="add-button">
+      <i class="icon plus-icon"></i>
+      Novo Veículo
+    </button>
+  </header>
+
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <div class="search-box">
+      <input type="text" placeholder="Procurar..." [(ngModel)]="searchTerm"
+             (input)="applyFilters()">
+      <i class="icon search-icon"></i>
+    </div>
+    <div class="filter-options">
+      <select [(ngModel)]="selectedYear" (change)="applyFilters()">
+        <option value="">Todos os anos</option>
+        <option *ngFor="let year of yearOptions" [value]="year">{{year}}</option>
+      </select>
+      <select [(ngModel)]="selectedBrand" (change)="applyFilters()">
+        <option value="">Todas as marcas</option>
+        <option *ngFor="let brand of brandOptions" [value]="brand">{{brand}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-cards">
+    <div class="stat-card">
+      <h3>Total de veículos</h3>
+      <p>{{filteredVeiculos.length}}</p>
+    </div>
+  </div>
+
+  <!-- Vehicle Table -->
+  <div class="table-container">
+    <table class="vehicles-table">
+      <thead>
+      <tr>
+        <th (click)="sort('marca')">Marca <i class="sort-icon" [class.asc]="sortColumn === 'marca' && sortDirection === 'asc'"
+                                             [class.desc]="sortColumn === 'marca' && sortDirection === 'desc'"></i></th>
+        <th (click)="sort('modelo')">Modelo <i class="sort-icon" [class.asc]="sortColumn === 'modelo' && sortDirection === 'asc'"
+                                              [class.desc]="sortColumn === 'modelo' && sortDirection === 'desc'"></i></th>
+        <th (click)="sort('ano')">Ano <i class="sort-icon" [class.asc]="sortColumn === 'ano' && sortDirection === 'asc'"
+                                          [class.desc]="sortColumn === 'ano' && sortDirection === 'desc'"></i></th>
+        <th (click)="sort('vendido')">Vendido? <i class="sort-icon" [class.asc]="sortColumn === 'vendido' && sortDirection === 'asc'"
+                                             [class.desc]="sortColumn === 'vendido' && sortDirection === 'desc'"></i></th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let veiculo of filteredVeiculos">
+        <td>
+          <div class="brand-logo" [style.background-image]="'url(assets/logos/' + veiculo.marca.toLowerCase() + '.png)'"></div>
+          {{veiculo.marca}}
+        </td>
+        <td>{{veiculo.nome}}</td>
+        <td>{{veiculo.ano}}</td>
+        <td>{{veiculo.vendido}}</td>
+        <td class="actions">
+          <button class="action-btn edit" [routerLink]="['/veiculos/editar', veiculo.id]">
+            <i class="icon edit-icon"></i>
+          </button>
+          <button class="action-btn delete" (click)="deleteVeiculo(veiculo.id)">
+            <i class="icon delete-icon"></i>
+          </button>
+          <button class="action-btn view" [routerLink]="['/veiculos/detalhes', veiculo.id]">
+            <i class="icon view-icon"></i>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="filteredVeiculos.length === 0">
+        <td colspan="8" class="no-results">
+          <i class="icon sad-icon"></i>
+          No vehicles found matching your criteria
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination" *ngIf="filteredVeiculos.length > itemsPerPage">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">
+      <i class="icon prev-icon"></i>
+    </button>
+    <span *ngFor="let page of getPages()"
+          [class.active]="page === currentPage"
+          (click)="goToPage(page)">
+      {{page}}
+    </span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      <i class="icon next-icon"></i>
+    </button>
+  </div>
+</div>
